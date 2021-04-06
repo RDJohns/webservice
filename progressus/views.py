@@ -23,12 +23,34 @@ def index(request):
     return render(request, 'views/index-2.html',context)
 
 def getPers(request):
-    liste,autre,tous = Personnel.getData("")
+    matricule = request.GET.get('matricule')
+    date = request.GET.get('date')
+    where = ""
+    if (matricule):
+        if len(matricule)>0:
+            str_matricule = ((matricule).split(','))
+            matricule = "','".join(str_matricule)
+            where += " AND matricule in ('"+matricule+"')"
+    if (date):
+        where += " AND date_connexion::date = '"+date+"'"
+    
+    liste,autre,tous = Personnel.getData(where)
     data = {'liste': liste}
     return render(request, 'views/personnel.html',data)
 
 def getPersGroup(request):
-    liste,autre,tous = Personnel.getData("")
+    matricule = request.GET.get('matricule')
+    date = request.GET.get('date')
+    where = ""
+    if (matricule):
+        if len(matricule)>0:
+            str_matricule = ((matricule).split(','))
+            matricule = "','".join(str_matricule)
+            where += " AND matricule in ('"+matricule+"')"
+    if (date):
+        where += " AND date_connexion::date = '"+date+"'"
+    
+    liste,autre,tous = Personnel.getData(where)
     data = {'liste': autre}
     return render(request, 'views/personnel2.html',data) 
 #@csrf_protect
