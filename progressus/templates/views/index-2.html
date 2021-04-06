@@ -1,0 +1,201 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"-->
+	
+	<title>COMDATA MADA SYSTEM EXTERNE</title>
+
+	<link rel=" {% static 'assets/images/gt_favicon.png' %}" href="{% static 'assets/images/logo2.png' %}">
+	
+	<!--link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"-->
+	<!--link rel="stylesheet" href=" {% static 'assets/css/bootstrap.min.css' %}"-->
+	<!--link rel="stylesheet" href="assets/css/font-awesome.min.css"-->
+
+	<!-- Custom styles for our template -->
+	<!--link rel="stylesheet" href="{% static 'assets/css/bootstrap-theme.css' %}" media="screen"-->
+	<!--link rel="stylesheet" href="{% static 'assets/css/main.css' %}"-->
+
+
+	<link href=" {% static 'data/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'data/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+	<link href=" {% static 'data/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'data/css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'data/css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
+  
+	<link href="{% static 'data/css/style/style.css' %}" rel="stylesheet">
+	<link href=" {% static 'data/css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+    <link href="{% static 'data/css/plugins/daterangepicker/daterangepicker-bs3.css' %}" rel="stylesheet">
+    <link href="{% static 'data/css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+</head>
+
+<body class="home" style="color:#333;margin:5px;">
+<script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+</script>
+	<!-- Fixed navbar -->
+	<!--div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src=" {% static 'assets/images/logo.png' %} " width = 140 height = 30 alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.html"><img src=" {% static 'assets/images/SysExt.png' %}" width = 150 height = 40 alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="sidebar-left.html">Left Sidebar</a></li>
+							<li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
+						</ul>
+					</li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+				</ul>
+			</div>
+		</div>
+	</div-->
+	
+
+	 <div class="ibox " style="color:#333;">
+		<div class="ibox-title">
+			<h5 style="float:left;"><i class="fa fa-search"></i> Recherche   {{url }}</h5>
+			<div class="ibox-tools">
+				<a class="collapse-link">
+					<i class="fa fa-chevron-up"></i>
+				</a>
+			</div>
+		</div>
+		<div class="ibox-content">
+			<div class="row">
+				<div class="row col-sm-6">
+					<div class="col-sm-2 bg-muted" style="padding-top: 8px;    text-align: right;">
+						<span class="bg-muted col-sm-6" style="display:inline-block;"><span class=""><b>Matricule</b></span></span>
+					</div>
+					<div class="col-sm-9">
+						<select data-placeholder="Choisir matricule ..." class="chosen-select col-sm-6" multiple tabindex="4" id="matricule" style="display:inline-block;">
+                            {% for  row in tous %}
+                                <option value="{{ row.Matricule }}">{{ row.Matricule }} - {{ row.Nom }} {{ row.Prénoms }}</option>
+                            {% endfor %}
+						</select>
+					</div>
+				</div>
+                <div class="row col-sm-3">
+					<div class="col-sm-3 bg-muted" style="padding-top: 8px;    text-align: right;">
+						<span class="bg-muted col-sm-6" style="display:inline-block;"><span class=""><b>Date</b></span></span>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group" id="date">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_re" type="text" class="form-control" value="">
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="row col-sm-3" >
+					<button class="btn btn-primary " type="button" onclick="rechercher()" style="height: 34px;"><i class="fa fa-search"></i> Rechercher</button>
+				</div>
+			</div>
+			<!--div class="row" >
+				<div style="text-align:center;" >
+					<button class="btn btn-primary " type="button" onclick="rechercher()"><i class="fa fa-search"></i> Rechercher</button>
+				</div>
+			</div-->
+
+		</div>
+	</div>
+
+
+	
+
+
+    <div class="row">
+        <div class=" col-sm-6">
+            <div class="ibox " style="color:#333;">
+                <div class="ibox-title">
+                    <h5><i class="fa fa-list-alt" style="font-size:18px;" ></i> Liste des personnels</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content" style="width:50%%;height:693px;color:black;overflow-x: auto;">
+					<table border="1" class="" id="table_test" style="width:100%;">
+					<thead>
+						<tr style="text-align: right;">
+						<th>Matricule</th>
+						<th>Nom</th>
+						<th>Prénoms</th>
+						<th>Date_Con</th>
+						<th>Connexion</th>
+						<th>Déconnexion</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox "  style="color:#333;">
+                <div class="ibox-title">
+                    <h5><i class="fa fa-list-alt" style="font-size:18px;" ></i> Liste des personnels groupé</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id = "autre" class="ibox-content" style="width:50%%;height:693px;color:black;overflow-x: auto;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="    margin-top: -20px !important;">
+        <div class=" col-sm-6" >
+            <a href="{% url 'progressus:liste1'  %}" style="float:right;"> System Externe</a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{% url 'progressus:liste2'  %}"> System Externe group heure</a>
+        </div>
+    </div>
+		
+		</div>
+	</div>
+	<footer id="footer" class="top-space">
+			</div>
+		</div>
+			</div>
+		</div>
+	</footer>	
+	<script src=" {% static 'assets/js/headroom.min.js' %}"></script>
+	<script src=" {% static 'assets/js/jQuery.headroom.min.js' %}"></script>
+	<script src="{% static 'data/js/jquery-3.1.1.min.js' %}"></script>
+    <!--script src="{% static 'data/js/plugins/daterangepicker/daterangepicker.js' %}"></script-->
+    <script src="{% static 'data/js/popper.min.js' %}"></script>
+    <script src="{% static 'data/js/bootstrap.js' %}"></script>
+    <script src="{% static 'data/js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'data/js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'data/js/plugins/dataTables/datatables.min.js' %}"></script>
+    <script src="{% static 'data/js/plugins/dataTables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'data/js/inspinia.js' %}"></script>
+    <script src="{% static 'data/js/plugins/pace/pace.min.js' %}"></script>
+	<script src="{% static 'data/js/script/index.js' %}"></script>
+    <script src="{% static 'data/js/plugins/chosen/chosen.jquery.js' %}"></script>
+    <script src="{% static 'data/js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'data/js/plugins/fullcalendar/moment.min.js' %}"></script>
+	
+    
+</body>
+</html>

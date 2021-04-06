@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"-->
+	
+	<title>COMDATA MADA SYSTEM EXTERNE</title>
+
+	<link rel=" {% static 'assets/images/gt_favicon.png' %}" href="{% static 'assets/images/logo2.png' %}">
+	
+	<!--link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"-->
+	<!--link rel="stylesheet" href=" {% static 'assets/css/bootstrap.min.css' %}"-->
+	<!--link rel="stylesheet" href="assets/css/font-awesome.min.css"-->
+
+	<!-- Custom styles for our template -->
+	<!--link rel="stylesheet" href="{% static 'assets/css/bootstrap-theme.css' %}" media="screen"-->
+	<!--link rel="stylesheet" href="{% static 'assets/css/main.css' %}"-->
+
+
+	<link href=" {% static 'data/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'data/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+	<link href=" {% static 'data/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'data/css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'data/css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
+  
+	<link href="{% static 'data/css/style/style.css' %}" rel="stylesheet">
+	<link href=" {% static 'data/css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+</head>
+
+<body class="home" style="color:white;">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src=" {% static 'assets/images/logo.png' %} " width = 140 height = 30 alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.html"><img src=" {% static 'assets/images/SysExt.png' %}" width = 150 height = 40 alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="sidebar-left.html">Left Sidebar</a></li>
+							<li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
+						</ul>
+					</li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<header id="head">
+	
+
+	 <div class="ibox " style="color:#333;">
+		<div class="ibox-title">
+			<h5 style="float:left;"><i class="fa fa-search"></i> Recherche</h5>
+			<div class="ibox-tools">
+				<a class="collapse-link">
+					<i class="fa fa-chevron-up"></i>
+				</a>
+			</div>
+		</div>
+		<div class="ibox-content">
+			<div class="row">
+				<div class="row col-sm-3">
+					<div class="row col-sm-3 bg-muted" style="padding-top: 8px;">
+						<span class="bg-muted col-sm-6" style="display:inline-block;"><span class=""><b>Matricule</b></span></span>
+					</div>
+					<div class="row col-sm-9">
+						<select data-placeholder="Choisir matricule ..." class="chosen-select col-sm-6" multiple tabindex="4" id="re_bu" style="display:inline-block;">
+							<option value="">Select</option>
+							<option value="United States">United States</option>
+							<option value="United Kingdom">United Kingdom</option>
+							<option value="Afghanistan">Afghanistan</option>
+							<option value="Aland Islands">Aland Islands</option></select>
+						</select>
+					</div>
+					
+				</div>
+			</div>
+			<div class="row" >
+				<div style="text-align:center;" >
+					<button class="btn btn-primary " type="button" ><i class="fa fa-search"></i> Rechercher</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+		
+<table>
+<tr>
+<td>
+<!--table style="background-color:-ms-linear-gradient(top, #FCFEFF 0%, #AF00EF 100%);background-image:-ms-linear-gradient(top, #FCFEFF 0%, #AF00EF 100%);"-->
+<table style="background-color:white;">
+<td>
+<!-- src="System.html" -->
+<!--<iframe title="exemple 1 avec iframe"  width="1000" height="700"> </iframe>-->
+<div id="div_table_personnel"style="width:50%%;height:640px;color:black;overflow-x: auto;">
+{% autoescape off %}{{ data }}{% endautoescape %}</div>
+</td>
+</table>
+<!--a href="System.html"> System Externe </a-->
+<td>
+</td>
+<td>
+<td>
+<table style="background-color:white;">
+<td>
+
+<div style="width:50%px;height:640px;color:black;overflow-x: auto;">
+{% autoescape off %}{{ autre }}{% endautoescape %}</div>
+<!--iframe title="exemple 1 avec iframe"  width="800" height="640"><!-- src="Group.html"-> </iframe-->
+</td>
+</table>
+</td>
+
+</tr>
+</table>
+		
+		</div>
+	</div>
+	
+	<!-- Social links. @TODO: replace by link/instructions in template -->
+	<a href="{% url 'progressus:liste1'  %}"> System Externe</a>
+	<a href="{% url 'progressus:liste2'  %}"> System Externe group heure</a>
+	<section id="social">
+		<div class="container">
+			<div class="wrapper clearfix">
+				<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style">
+				<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+				<a class="addthis_button_tweet"></a>
+				<a class="addthis_button_linkedin_counter"></a>
+				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+				</div>
+				<!-- AddThis Button END -->
+			</div>
+		</div>
+	</section>
+	<!-- /social links -->
+
+
+	<footer id="footer" class="top-space">
+
+		
+			</div>
+		</div>
+
+		
+			</div>
+		</div>
+
+	</footer>	
+		
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script-->
+	<!--script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script-->
+	<script src=" {% static 'assets/js/headroom.min.js' %}"></script>
+	<script src=" {% static 'assets/js/jQuery.headroom.min.js' %}"></script>
+	<!--script src=" {% static 'assets/js/template.js' %}"></script-->
+
+
+	<script src="{% static 'data/js/jquery-3.1.1.min.js' %}"></script>
+	
+
+    <script src="{% static 'data/js/popper.min.js' %}"></script>
+    <script src="{% static 'data/js/bootstrap.js' %}"></script>
+    <script src="{% static 'data/js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'data/js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'data/js/plugins/dataTables/datatables.min.js' %}"></script>
+    <script src="{% static 'data/js/plugins/dataTables/dataTables.bootstrap4.min.js' %}"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'data/js/inspinia.js' %}"></script>
+    <script src="{% static 'data/js/plugins/pace/pace.min.js' %}"></script>
+	<script src="{% static 'data/js/script/index.js' %}"></script>
+
+	<!-- Chosen -->
+    <script src="{% static 'data/js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+
+</body>
+</html>

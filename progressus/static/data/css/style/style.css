@@ -1,0 +1,60 @@
+.dataTables_paginate {
+	float: right;
+  }
+  .dataTables_info{
+	float:left;
+  }
+  table.dataTable thead .sorting,
+  table.dataTable thead .sorting_asc:after,
+  table.dataTable thead .sorting_desc,
+  table.dataTable thead .sorting_asc_disabled,
+  table.dataTable thead .sorting_desc_disabled {
+    background: transparent;
+  }
+  
+  .dataTables_wrapper {
+    padding-bottom: 30px;
+  }
+  div.dataTables_wrapper {
+      /*width: 800px;*/
+      margin: 0 auto;
+  }
+  .dataTables_length {
+      float: left;
+    }
+    
+    .dataTables_filter label {
+      margin-right: 5px;
+      float: right;
+    }
+  
+    
+    .DTFC_LeftBodyLiner{
+      position: relative;
+      top: -14px !important;
+      left: 0px !important;
+      min-width: 70px !important;
+      }
+      .DTFC_Cloned{
+          background-color: white !important;
+      }
+      .DTFC_RightWrapper{
+          display:none !important;
+      }
+div.dataTables_info {
+    display:none;
+}
+table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 7px;
+}
+a.btn-default>span{
+    color:#333;
+}
+table.dataTable, table {
+    font-size: 13px !important;
+}
+#personnel_groupe{
+  width: 100%;
+}
