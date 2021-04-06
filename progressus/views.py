@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404,render
 from django.template import loader
 from django.conf import settings
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect,csrf_exempt
 import json
 from django.http import JsonResponse
 

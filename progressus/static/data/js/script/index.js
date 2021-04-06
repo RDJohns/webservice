@@ -1,5 +1,10 @@
 var urlProject = "http://127.0.0.1:8000/progressus/"
+var date_default;
 $(document).ready(function() {
+    var  yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    date_default =  verif(yesterday.getDate()) + '/' + verif(yesterday.getMonth() + 1)  + '/' +  yesterday.getFullYear();
+    
+    $('#date_re').val(date_default);
     rechercher();
 
 
@@ -29,6 +34,19 @@ $(document).ready(function() {
 
     
 });
+function reinitialiser_Champ(){
+    $('#date_re').val(date_default);
+    $('#matricule').val('').chosen({width: "100%"}).trigger("chosen:updated");
+    rechercher();
+}
+function verif(nombre){
+    var data = nombre.toString()
+    if(data.length==1){
+    data = '0'+data;
+    }
+    
+    return data;
+}
 function dateFormat(date){
     var now = new Date(date);
     var dateString = moment(now).format('YYYY-MM-DD');
@@ -37,6 +55,8 @@ function dateFormat(date){
 }
 
 function rechercher(){
+    $('#ibox2').children('.ibox-content').toggleClass('sk-loading');
+    $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
     var date_re = $('#date_re').val();
     var mat = $('#matricule').val();
     $('#autre').html('');
@@ -56,9 +76,15 @@ function rechercher(){
             $('#autre').html(res.autre);
             //$('#table_liste_app').DataTable().destroy();
             //$('#script').append(res); 
+            $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+            recherche2 ();
             
         }
     });
+   
+}
+
+function recherche2 (){
     $('#table_test').DataTable().destroy();
     $('#table_test').dataTable( {
          columns : [null,null,null,null,null,null],       
@@ -147,7 +173,10 @@ function rechercher(){
              {extend: 'csv'},
              {extend: 'excel', title: 'ExampleFile'},
              {extend: 'pdf', title: 'ExampleFile'},
-         ]
+         ],
+         initComplete : function(settings, json) {
+            $('#ibox2').children('.ibox-content').toggleClass('sk-loading');
+            }
     });
      $(".dt-buttons").css("float","right");
      $("div.toolbar").css("float","right");

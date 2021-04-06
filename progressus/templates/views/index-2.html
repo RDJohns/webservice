@@ -39,14 +39,17 @@
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 </script>
 	<!-- Fixed navbar -->
-	<!--div class="navbar navbar-inverse navbar-fixed-top headroom" >
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<a style="margin-left: 10px;" class="navbar-brand" href="http://10.216.15.79:88/login"><img src=" {% static 'assets/images/logo.png' %} " width = 140 height = 30 alt="Progressus HTML5 template"></a>
+		<a class="navbar-brand" ><img src=" {% static 'assets/images/SysExt.png' %}" width = 150 height = 40 alt="Progressus HTML5 template"></a>
+			
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src=" {% static 'assets/images/logo.png' %} " width = 140 height = 30 alt="Progressus HTML5 template"></a>
-				<a class="navbar-brand" href="index.html"><img src=" {% static 'assets/images/SysExt.png' %}" width = 150 height = 40 alt="Progressus HTML5 template"></a>
+			<div class="navbar-header" style="/*margin-left: -34%;*/">
+				<!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </!--button>
+				<a class="navbar-brand" href="http://10.216.15.79:88/login"><img src=" {% static 'assets/images/logo.png' %} " width = 140 height = 30 alt="Progressus HTML5 template"></a>
+				<a-- class="navbar-brand" ><img src=" {% static 'assets/images/SysExt.png' %}" width = 150 height = 40 alt="Progressus HTML5 template"></a-->
 			</div>
-			<div class="navbar-collapse collapse">
+			<!--div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="about.html">About</a></li>
@@ -60,12 +63,15 @@
 					<li><a href="contact.html">Contact</a></li>
 					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
 				</ul>
-			</div>
+			</!--div-->
+			
+			<a class="navbar-brand" href="http://10.216.15.79:88/login"><img src=" {% static 'assets/images/intranet.jpg' %}" width = 150 height = 40 ></a>
+			
 		</div>
-	</div-->
+	</div>
 	
 
-	 <div class="ibox " style="color:#333;">
+	 <div class="ibox " style="color:#333;    margin-top: 60px;">
 		<div class="ibox-title">
 			<h5 style="float:left;"><i class="fa fa-search"></i> Recherche   {{url }}</h5>
 			<div class="ibox-tools">
@@ -102,6 +108,7 @@
 				</div>
 				<div class="row col-sm-3" >
 					<button class="btn btn-primary " type="button" onclick="rechercher()" style="height: 34px;"><i class="fa fa-search"></i> Rechercher</button>
+					<button class="btn btn-warning " type="button" onclick="reinitialiser_Champ()" style="height: 34px;    margin-left: 15px;"><i class="fa fa-undo"></i> Réinitialiser</button>
 				</div>
 			</div>
 			<!--div class="row" >
@@ -119,7 +126,7 @@
 
     <div class="row">
         <div class=" col-sm-6">
-            <div class="ibox " style="color:#333;">
+            <div class="ibox " style="color:#333;" id="ibox2">
                 <div class="ibox-title">
                     <h5><i class="fa fa-list-alt" style="font-size:18px;" ></i> Liste des personnels</h5>
                     <div class="ibox-tools">
@@ -129,6 +136,13 @@
                     </div>
                 </div>
                 <div class="ibox-content" style="width:50%%;height:693px;color:black;overflow-x: auto;">
+					<div class="sk-spinner sk-spinner-wave">
+						<div class="sk-rect1"></div>
+						<div class="sk-rect2"></div>
+						<div class="sk-rect3"></div>
+						<div class="sk-rect4"></div>
+						<div class="sk-rect5"></div>
+					</div>
 					<table border="1" class="" id="table_test" style="width:100%;">
 					<thead>
 						<tr style="text-align: right;">
@@ -147,7 +161,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="ibox "  style="color:#333;">
+            <div class="ibox "  style="color:#333;" id="ibox1">
                 <div class="ibox-title">
                     <h5><i class="fa fa-list-alt" style="font-size:18px;" ></i> Liste des personnels groupé</h5>
                     <div class="ibox-tools">
@@ -156,8 +170,15 @@
                         </a>
                     </div>
                 </div>
-                <div id = "autre" class="ibox-content" style="width:50%%;height:693px;color:black;overflow-x: auto;">
-                    
+                <div class="ibox-content" style="width:50%%;height:693px;color:black;overflow-x: auto;">
+                    <div class="sk-spinner sk-spinner-wave">
+						<div class="sk-rect1"></div>
+						<div class="sk-rect2"></div>
+						<div class="sk-rect3"></div>
+						<div class="sk-rect4"></div>
+						<div class="sk-rect5"></div>
+					</div>
+					<div id = "autre" ></div>
                 </div>
             </div>
         </div>
@@ -191,10 +212,12 @@
     <script src="{% static 'data/js/plugins/dataTables/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'data/js/inspinia.js' %}"></script>
     <script src="{% static 'data/js/plugins/pace/pace.min.js' %}"></script>
-	<script src="{% static 'data/js/script/index.js' %}"></script>
+	
     <script src="{% static 'data/js/plugins/chosen/chosen.jquery.js' %}"></script>
     <script src="{% static 'data/js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
 	<script src="{% static 'data/js/plugins/fullcalendar/moment.min.js' %}"></script>
+
+	<script src="{% static 'data/js/script/index.js' %}"></script>
 	
     
 </body>
