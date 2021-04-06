@@ -1,4 +1,5 @@
-var urlProject = "http://127.0.0.1:8000/progressus/"
+//var urlProject = "http://127.0.0.1:8000/progressus/"
+var urlProject = "http://10.216.15.79:8000/progressus/"
 var date_default;
 $(document).ready(function() {
     var  yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
